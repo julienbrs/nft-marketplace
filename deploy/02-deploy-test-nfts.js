@@ -23,4 +23,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("============================")
 }
 
-module.exports.tag = ["all", "testNft"]
+module.exports.tags = ["all", "testNft"]
