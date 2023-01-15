@@ -33,10 +33,10 @@ async function updateAbi() {
         nftMarketplace.interface.format(ethers.utils.FormatTypes.json)
     )
 
-    const TestNft = await ethers.getContract("TestNft")
+    const EtherealNFTs = await ethers.getContract("EtherealNFTs")
     fs.writeFileSync(
-        `${PATH_TO_ABI}TestNft.json`,
-        TestNft.interface.format(ethers.utils.FormatTypes.json)
+        `${PATH_TO_ABI}EtherealNFTs.json`,
+        EtherealNFTs.interface.format(ethers.utils.FormatTypes.json)
     )
 }
 

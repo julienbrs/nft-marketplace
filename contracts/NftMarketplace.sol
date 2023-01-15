@@ -79,7 +79,7 @@ contract NftMarketplace is ReentrancyGuard {
     mapping(address => mapping(uint256 => Listing)) private s_listings;
     mapping(address => uint256) private s_proceed; // Seller to amount earned
 
-    // Core of the SC
+    /* Core of the contract */
 
     function listItem(
         address nftAddress,
@@ -142,7 +142,7 @@ contract NftMarketplace is ReentrancyGuard {
         }
     }
 
-    // Getter functions
+    /* Getter functions */
 
     function getListing(
         address nftAddress,
