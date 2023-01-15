@@ -1,15 +1,20 @@
-const { ethers } = require("hardhat")
+const { ethers, network } = require("hardhat")
+const { developmentChains } = require("../helper-hardhat-config")
 
 async function mint() {
-    const NftMarketplace = await ethers.getContract("NftMarketplace")
-    const testNft = await ethers.getContract("TestNft")
+    const { deployer } = await getNamedAccounts()
+    console.log("Address of the minter is: ", deployer)
 
-    console.log("Minting...")
-    const mintTx = await testNft.mintNft()
-    const mintTxReceipt = await mintTx.wait(1)
-    const tokenId = mintTxReceipt.events[0].args.tokenId
-    console.log(`TokenId minted: ${tokenId}`)
-    console.log(`Address of minted: ${testNft.address}`)
+    // Simplest NFT
+    const EtherealNFTs = await ethers.getContract("EtherealNFTs", deployer)
+    const mintFee = await EtherealNFTs.getMintFee()
+
+    const EtherealNFTsMintTx = await EtherealNFTs.mintNFT({ value: mintFee.toString() })
+    const EtherealNFTsMintTxReceipt = await EtherealNFTsMintTx.wait(1)
+    const tokenId = EtherealNFTsMintTxReceipt.events[0].args.tokenId
+    console.log(`TokenId: ${tokenId}`)
+    console.log(`tokenURI of EtherealNFT minted is ${await EtherealNFTs.tokenURI(tokenId)}`)
+    console.log(`Address of minted: ${EtherealNFTs.address}`)
 }
 
 mint()

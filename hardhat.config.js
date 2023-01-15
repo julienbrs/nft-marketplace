@@ -29,7 +29,7 @@ module.exports = {
 
     defaultNetwork: "hardhat",
     networks: {
-        hardhat: {
+        localhost: {
             chainId: 31337,
             blockConfirmations: 1,
             // gasPrice: 130000000000,

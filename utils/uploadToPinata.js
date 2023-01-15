@@ -4,8 +4,8 @@ const path = require("path")
 require("dotenv").config()
 
 const pinataApiKey = process.env.PINATA_API_KEY || ""
-const pinataApiSecret = process.env.PINATA_API_SECRET || ""
-const pinata = new pinataSDK(pinataApiKey, pinataApiSecret)
+const pinataApiSecretKey = process.env.PINATA_API_SECRET || ""
+const pinata = new pinataSDK(pinataApiKey, pinataApiSecretKey)
 
 async function storeImages(imagesFilePath) {
     const fullImagesPath = path.resolve(imagesFilePath)
@@ -13,15 +13,17 @@ async function storeImages(imagesFilePath) {
 
     let responses = []
 
-    console.log("Uploading to IPFS with Pinata...")
+    console.log("Uploading to IPFS with Pinata, please wait...")
     for (fileIndex in files) {
-        console.log(`Uploading ${files[fileIndex]}...`)
+        console.log(`Uploading ${files[fileIndex]}..`)
         const readableStreamForFile = fs.createReadStream(`${fullImagesPath}/${files[fileIndex]}`)
+
         const options = {
             pinataMetadata: {
-                name: files[fileIndex],
+                name: `Ethereal_${files[fileIndex]}`,
             },
         }
+
         try {
             await pinata
                 .pinFileToIPFS(readableStreamForFile, options)
@@ -35,7 +37,7 @@ async function storeImages(imagesFilePath) {
             console.log(error)
         }
     }
-    console.log("Files Uploaded!")
+    console.log("All files have been uploaded with Pinata!")
     return { responses, files }
 }
 
