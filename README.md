@@ -41,7 +41,8 @@
 
 A decentralized application (dapp) marketplace built on the Goerli testnet using the Ethereum blockchain. The marketplace allows users to list, buy and sell Non-Fungible Tokens (NFTs). The marketplace also includes a feature to mint a new NFT from the "Ethereal" collection for 0.01ETH, to test the marketplace functionality.
 
-Check the dApp here: [NFT Marketplace](https://frontend-marketplace-nfts.vercel.app/)
+Test the dApp here: [NFT Marketplace](https://frontend-marketplace-nfts.vercel.app/)
+Check the frontend repo here: [Frontend repositorie](https://github.com/julienbrs/frontend-marketplace-nfts)
 <br />
 <p align="center">
   <img src="NFTMarketplace.png" alt="Dapp Marketplace Screenshot"/>
