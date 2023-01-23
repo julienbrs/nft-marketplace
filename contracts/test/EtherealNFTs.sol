@@ -42,8 +42,14 @@ contract EtherealNFTs is ERC721, Ownable {
         emit NftMinted(msg.sender, tokenId);
     }
 
-    function setTokenURI(uint256 _tokenId, string memory _uri) public onlyOwner {
+    /* Maybe not the best way to forbid setTokenURI if already init */
+    function setTokenURI(uint256 _tokenId, string memory _uri) internal {
         require(_tokenId > 0, "Invalid token ID");
+        require(
+            keccak256(abi.encodePacked(tokenURIs[_tokenId])) == keccak256(abi.encodePacked("")),
+            "Token already initialized"
+        );
+
         tokenURIs[_tokenId] = _uri;
     }
 

@@ -1,8 +1,8 @@
 const { ethers } = require("hardhat")
 
 async function mintAndList() {
-    const MIN = 0.01
-    const MAX = 1.2
+    const MIN = 0.005
+    const MAX = 1.5
     const INCREMENT = 0.1
     const randomNumber = MIN + Math.floor((Math.random() * (MAX - MIN)) / INCREMENT) * INCREMENT
     const PRICE = ethers.utils.parseEther(randomNumber.toString())
@@ -25,9 +25,10 @@ async function mintAndList() {
     console.log("Listed!")
 }
 
-mintAndList()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error)
-        process.exit(1)
-    })
+for (let i = 0; i < 10; i++) {
+    setTimeout(async () => {
+        await mintAndList()
+            .then(() => console.log("Minted and listed NFT"))
+            .catch((error) => console.error(error))
+    }, i * 30000)
+}
