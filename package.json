@@ -19,5 +19,13 @@
   },
   "dependencies": {
     "@pinata/sdk": "^2.1.0"
-  }
+  },    "scripts": {
+    "test": "yarn hardhat test",
+    "test:staging": "yarn hardhat test --network goerli",
+    "lint": "yarn solhint 'contracts/*.sol'",
+    "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
+    "format": "yarn prettier --write .",
+    "coverage": "yarn hardhat coverage"
+}
+  
 }

@@ -59,9 +59,9 @@ module.exports = {
         deployer: {
             default: 0,
         },
-        player: { default: 1 },
+        user: { default: 1 },
     },
     mocha: {
-        timeout: 500000, // max 200 sec
+        timeout: 500000,
     },
 }
